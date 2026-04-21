@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ōd Protocol — The Missing Protocol Between Climate Capital and Real Projects</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,300,0,0" rel="stylesheet"/>
+<style>
+/* ─── TOKENS ──────────────────────────────────────────────── */
+:root {
+  --base:#FAF8F3;--base-lo:#F3F0E8;--lo:#EBE7DC;
+  --mid:#E3DFD4;--hi:#D8D3C7;--top:#CECAB8;
+  --ac:#0D7A4A;--ac2:#0A5C38;
+  --t:#0D1C11;--td:#2D4A38;--tm:#6B8A78;
+  --out:#D6D1C4;--out2:#CAC5B8;
+  --forest:#1B3D29;--cream:#FAF8F3;--ink:#0D1C11;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--base);color:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+.serif{font-family:'Playfair Display',serif}
+.material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 300,'GRAD' 0,'opsz' 24;vertical-align:middle}
+
+/* ─── PHOTO UTILITY ──────────────────────────────────────── */
+.photo-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ov{position:absolute;inset:0}
+.ov-dark{background:rgba(250,248,243,.88)}
+.ov-mid{background:rgba(250,248,243,.70)}
+.ov-light{background:rgba(250,248,243,.45)}
+.ov-grad{background:linear-gradient(to bottom,rgba(250,248,243,.1) 0%,rgba(250,248,243,.95) 100%)}
+.ov-grad-r{background:linear-gradient(to right,rgba(250,248,243,.97) 50%,rgba(250,248,243,.2) 100%)}
+.pos-rel{position:relative;overflow:hidden}
+
+/* ─── LAYOUT ──────────────────────────────────────────────── */
+.wrap{max-width:1280px;margin:0 auto;padding:0 3rem}
+.sec{padding:7rem 3rem}
+.sec-lo{background:var(--lo)}
+hr.div{border:none;border-top:1px solid var(--out)}
+
+/* ─── TYPE ───────────────────────────────────────────────── */
+.lbl{font-size:.5625rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--ac)}
+.lbl-muted{font-size:.5rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--tm)}
+h1.hero-title{font-family:'Playfair Display',serif;font-size:clamp(3rem,5vw,4.75rem);font-weight:500;line-height:1.08;letter-spacing:-.025em;color:var(--ink)}
+h1.hero-title em{font-style:italic;color:var(--forest)}
+.hero-sub{font-size:1.0625rem;line-height:1.75;color:var(--td);max-width:520px;margin-bottom:3rem}
+
+/* ─── BUTTONS ────────────────────────────────────────────── */
+.btn{display:inline-block;white-space:nowrap;cursor:pointer;border:none;transition:all .2s}
+.btn-p{background:var(--forest);color:var(--cream);font-size:.6875rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:1rem 2.5rem}
+.btn-p:hover{background:var(--ink)}
+.btn-p:active{transform:scale(.97)}
+.btn-g{background:transparent;color:var(--td);font-size:.6875rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;padding:1rem 2.5rem;border:1px solid var(--out)}
+.btn-g:hover{border-color:var(--forest);color:var(--forest)}
+
+/* ─── NAV ────────────────────────────────────────────────── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(250,248,243,.97);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid var(--out);display:flex;align-items:center;justify-content:space-between;padding:0 3rem;height:68px}
+.logo{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:700;color:var(--ink);letter-spacing:-.02em;cursor:pointer;user-select:none}
+.logo span{color:var(--forest)}
+.nav-links{display:flex}
+.nl{font-size:.5875rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--tm);padding:0 1rem;height:68px;display:flex;align-items:center;cursor:pointer;transition:color .2s;border-bottom:2px solid transparent;border-top:2px solid transparent;user-select:none}
+.nl:hover{color:var(--ink)}
+.nl.on{color:var(--forest);border-bottom-color:var(--forest)}
+.nav-btn{background:var(--forest);color:var(--cream);font-size:.5875rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:.65rem 1.375rem;border:none;cursor:pointer;transition:background .2s;margin-left:1.5rem;white-space:nowrap}
+.nav-btn:hover{background:var(--ink)}
+
+/* ─── PAGES ──────────────────────────────────────────────── */
+.page{display:none;padding-top:68px}
+.page.on{display:block}
+
+/* ─── GRID BORDERS ───────────────────────────────────────── */
+.gb{border-left:1px solid var(--out);border-top:1px solid var(--out)}
+.gc{border-right:1px solid var(--out);border-bottom:1px solid var(--out)}
+
+/* ─── HOME HERO ──────────────────────────────────────────── */
+.home-hero-wrap{position:relative;overflow:hidden;border-bottom:1px solid var(--out)}
+.hero-inner{position:relative;z-index:2;max-width:1280px;margin:0 auto;padding:6rem 3rem;display:grid;grid-template-columns:1fr 420px;gap:4rem;align-items:center;min-height:calc(100vh - 68px)}
+.badge{display:inline-flex;align-items:center;gap:.5rem;border:1px solid var(--out);background:rgba(255,255,255,.6);padding:.375rem .875rem;margin-bottom:2.5rem}
+.pulse{width:6px;height:6px;background:var(--forest);flex-shrink:0;animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap}
+
+/* Engine Card */
+.ec{background:rgba(250,248,243,.96);border:1px solid var(--out);padding:2rem;backdrop-filter:blur(16px);box-shadow:0 8px 40px rgba(13,28,17,.12)}
+.ec-hd{display:flex;justify-content:space-between;align-items:center;padding-bottom:1.25rem;border-bottom:1px solid var(--out);margin-bottom:1.75rem}
+.live{display:flex;align-items:center;gap:.4rem;font-size:.48rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--forest)}
+.ec-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--out);margin:1.5rem 0}
+.egc{background:var(--lo);padding:.875rem}
+.egc-l{font-size:.44rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--tm);margin-bottom:.2rem}
+.egc-v{font-size:.875rem;font-weight:700;color:var(--forest)}
+.pbar{width:100%;height:2px;background:var(--hi);margin-top:.5rem;position:relative}
+.pfill{height:2px;background:var(--ac);width:67%}
+.pfill::after{content:'';position:absolute;right:0;top:-3px;width:8px;height:8px;background:var(--forest)}
+.hash{font-size:.5rem;color:var(--tm);line-height:1.9;padding-top:1.25rem;border-top:1px solid var(--out);font-family:monospace}
+
+/* ─── STATS ROW ──────────────────────────────────────────── */
+.srow{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--out);border-left:1px solid var(--out);background:var(--base)}
+.scell{padding:3.5rem 2.5rem;border-right:1px solid var(--out);border-bottom:1px solid var(--out)}
+.snum{font-family:'Playfair Display',serif;font-size:clamp(2.75rem,4.5vw,4rem);font-weight:400;letter-spacing:-.04em;color:var(--ink);line-height:1;margin-bottom:.75rem}
+
+/* ─── STEPS ──────────────────────────────────────────────── */
+.steps4{display:grid;grid-template-columns:repeat(4,1fr)}.steps3{display:grid;grid-template-columns:repeat(3,1fr)}
+.step{padding:2.5rem;border-right:1px solid var(--out);border-bottom:1px solid var(--out)}
+.sn{font-family:'Playfair Display',serif;font-size:3rem;font-weight:400;color:var(--hi);letter-spacing:-.04em;line-height:1;margin-bottom:1.5rem}
+.step h4{font-size:1rem;font-weight:600;color:var(--ink);margin-bottom:.75rem}
+.step p{font-size:.8125rem;line-height:1.75;color:var(--td)}
+
+/* ─── WHO GRID ───────────────────────────────────────────── */
+.wgrid{display:grid;grid-template-columns:repeat(3,1fr)}
+.wcard{padding:3rem 2.5rem;border-right:1px solid var(--out);border-bottom:1px solid var(--out);transition:background .2s}
+.wcard:hover{background:rgba(13,28,17,.03)}
+.wcard .ico{font-size:1.5rem;color:var(--forest);margin-bottom:1.5rem;display:block}
+.wcard h4{font-family:'Playfair Display',serif;font-size:1.375rem;font-weight:500;font-style:italic;margin-bottom:1rem;color:var(--ink)}
+.wcard p{font-size:.8125rem;line-height:1.75;color:var(--td)}
+
+/* ─── CTA BLOCK ──────────────────────────────────────────── */
+.cta-blk{background:var(--lo);border:1px solid var(--out);padding:5rem;display:grid;grid-template-columns:1fr auto;gap:4rem;align-items:center}
+.cta-blk h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,3.5vw,3rem);font-weight:500;letter-spacing:-.02em;color:var(--ink);line-height:1.2}
+.cta-blk h2 em{font-style:italic;color:var(--forest)}
+.cta-acts{display:flex;flex-direction:column;gap:1rem;align-items:flex-end}
+
+/* ─── PHOTO HERO SECTIONS ────────────────────────────────── */
+.ph-hero{position:relative;overflow:hidden;border-bottom:1px solid var(--out)}
+.ph-inner{position:relative;z-index:2}
+
+/* ─── LAYER DIAGRAM ──────────────────────────────────────── */
+.ldiag{border:1px solid var(--out);background:var(--base)}
+.layer{padding:1.75rem 2.5rem;border-bottom:1px solid var(--out);display:flex;justify-content:space-between;align-items:center;transition:background .2s;cursor:default}
+.layer:last-child{border-bottom:none}
+.layer:hover{background:rgba(13,28,17,.04)}
+.lnum{font-size:.48rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--tm);margin-bottom:.2rem}
+.lname{font-family:'Playfair Display',serif;font-size:1.125rem;font-weight:500;color:var(--ink)}
+.layer.la .lname{color:var(--forest)}
+.ldot{width:8px;height:8px;background:var(--forest);opacity:.2;transition:opacity .2s}
+.layer.la .ldot,.layer:hover .ldot{opacity:1}
+
+/* ─── VERIFY GRID ────────────────────────────────────────── */
+.vgrid{display:grid;grid-template-columns:repeat(3,1fr)}
+.vc{padding:3rem 2.5rem;border-right:1px solid var(--out);border-bottom:1px solid var(--out)}
+.vc .ico{font-size:1.75rem;color:var(--forest);display:block;margin-bottom:1.5rem}
+.vc h4{font-size:.6875rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--ink);margin-bottom:1rem}
+.vc p{font-size:.8125rem;line-height:1.75;color:var(--td)}
+
+/* ─── CODE BLOCK ─────────────────────────────────────────── */
+.cblk{background:#F0EDE5;border:1px solid var(--out);border-left:3px solid var(--forest);padding:2rem;font-size:.625rem;color:var(--td);line-height:1.9;overflow-x:auto;margin-top:3rem;font-family:monospace}
+.cblk .k{color:var(--forest);font-weight:600}.cblk .v{color:#0A5C38}.cblk .n{color:#2D6A4F}
+.cblk-hd{display:flex;justify-content:space-between;margin-bottom:1rem;padding-bottom:.75rem;border-bottom:1px solid var(--out)}
+
+/* ─── SOLUTION CARDS ─────────────────────────────────────── */
+.scards{display:grid;grid-template-columns:repeat(3,1fr)}
+.scard{border-right:1px solid var(--out);border-bottom:1px solid var(--out);display:flex;flex-direction:column}
+/* Solution photo header */
+.sphoto{height:220px;position:relative;overflow:hidden}
+.sphoto img{width:100%;height:100%;object-fit:cover;transition:transform .7s ease}
+.scard:hover .sphoto img{transform:scale(1.05)}
+.sphoto-ov{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(13,28,17,.1),rgba(13,28,17,.72))}
+.sphoto-tag{position:absolute;top:1.25rem;left:1.5rem}
+.sphoto-n{position:absolute;bottom:1.25rem;right:1.5rem;font-family:'Playfair Display',serif;font-size:3.5rem;font-weight:400;color:rgba(255,255,255,.15);line-height:1;letter-spacing:-.04em}
+.sbody{padding:2.5rem;flex:1;display:flex;flex-direction:column}
+.sbody h3{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:500;line-height:1.45;color:var(--ink);margin-bottom:1.75rem}
+.spec{margin-bottom:1.125rem}
+.spec-l{font-size:.44rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--tm);margin-bottom:.2rem}
+.spec-v{font-size:.8125rem;color:var(--td);line-height:1.6}
+.sm{padding-top:1.5rem;border-top:1px solid var(--out);margin-top:auto}
+.sm-n{font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:400;color:var(--ink);letter-spacing:-.03em}
+.sm-l{font-size:.44rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--tm);display:block;margin-top:.2rem}
+
+/* ─── COMPLIANCE ─────────────────────────────────────────── */
+.cgrid{display:grid;grid-template-columns:repeat(4,1fr)}
+.cc{padding:2.5rem;border-right:1px solid var(--out);border-bottom:1px solid var(--out)}
+.cname{font-family:'Playfair Display',serif;font-size:1.375rem;font-weight:700;color:var(--ink);padding-left:1rem;border-left:3px solid var(--forest);margin-bottom:1rem;line-height:1.3}
+.cdesc{font-size:.6875rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--tm);line-height:1.7}
+
+/* ─── PROJECTS TABLE ─────────────────────────────────────── */
+.ptbl{border:1px solid var(--out);margin-top:3rem}
+.ptbl-hd{display:grid;grid-template-columns:2.5fr 1fr 1fr 1fr 100px;background:var(--lo);border-bottom:1px solid var(--out);padding:.875rem 1.5rem}
+.th{font-size:.44rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--tm)}
+.trow{display:grid;grid-template-columns:2.5fr 1fr 1fr 1fr 100px;padding:1.25rem 1.5rem;border-bottom:1px solid var(--out);align-items:center;transition:background .15s}
+.trow:last-child{border-bottom:none}
+.trow:hover{background:rgba(13,28,17,.03)}
+.td{font-size:.8125rem;color:var(--td)}
+.tdp{font-size:.875rem;font-weight:500;color:var(--ink)}
+.tds{font-size:.625rem;color:var(--tm);margin-top:.2rem}
+.pthumb{width:56px;height:46px;object-fit:cover;flex-shrink:0;border:1px solid var(--out);filter:saturate(.85) contrast(.95)}
+.pmain{display:flex;align-items:center;gap:1rem}
+.pill{display:inline-flex;align-items:center;gap:.375rem;font-size:.48rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:.25rem .625rem;border:1px solid}
+.pill-a{color:var(--forest);border-color:var(--forest)}
+.pill-p{color:var(--tm);border-color:var(--hi)}
+.dot{width:4px;height:4px;background:currentColor}
+
+/* ─── PROJECT FEATURES ───────────────────────────────────── */
+.pfgrid{display:grid;grid-template-columns:repeat(3,1fr)}
+.pfc{padding:3rem 2.5rem;border-right:1px solid var(--out);border-bottom:1px solid var(--out)}
+.pfc h4{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:500;color:var(--ink);margin-bottom:.75rem}
+.pfc p{font-size:.8125rem;line-height:1.75;color:var(--td)}
+
+/* ─── INSTITUTIONS ───────────────────────────────────────── */
+.inst-hero{position:relative;overflow:hidden;border-bottom:1px solid var(--out);min-height:75vh;display:flex;align-items:center}
+.inst-inner{position:relative;z-index:2;padding:6rem 3rem;max-width:1280px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center}
+.chklist{list-style:none;margin-top:2rem}
+.chklist li{display:flex;gap:1rem;padding:1.125rem 0;border-bottom:1px solid var(--out);font-size:.875rem;color:var(--td);line-height:1.65;align-items:flex-start}
+.chklist li::before{content:'';min-width:5px;height:5px;background:var(--forest);margin-top:.45rem;flex-shrink:0}
+.proc{border:1px solid var(--out);margin-top:3rem}
+.ps{padding:2.5rem;border-bottom:1px solid var(--out);display:grid;grid-template-columns:70px 1fr;gap:2rem;align-items:start;transition:background .2s}
+.ps:last-child{border-bottom:none}
+.ps:hover{background:rgba(13,28,17,.03)}
+.psn{font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:400;color:var(--hi);letter-spacing:-.04em;line-height:1}
+.ps h4{font-size:1rem;font-weight:600;color:var(--ink);margin-bottom:.5rem}
+.ps p{font-size:.8125rem;line-height:1.75;color:var(--td)}
+
+/* ─── RESOURCES ──────────────────────────────────────────── */
+.rsplit{display:grid;grid-template-columns:2fr 1fr;gap:1px;background:var(--out);border:1px solid var(--out);margin-top:3rem}
+.rfeat{background:var(--cream);padding:3.5rem}
+.rside{background:var(--base-lo);padding:2.5rem}
+.rtag{font-size:.5rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--ac);margin-bottom:1.25rem;display:block}
+.rfeat h3{font-family:'Playfair Display',serif;font-size:2rem;font-weight:500;line-height:1.3;color:var(--ink);margin-bottom:1rem}
+.rfeat p{font-size:.875rem;line-height:1.8;color:var(--td);margin-bottom:2rem}
+.rmeta{font-size:.6875rem;color:var(--tm);letter-spacing:.08em;margin-bottom:2.5rem;display:flex;gap:2rem}
+.rlist{list-style:none}
+.rlist li{padding:1.5rem 0;border-bottom:1px solid var(--out);cursor:pointer}
+.rlist li:last-child{border-bottom:none}
+.rlist li:hover .rlt{color:var(--forest)}
+.rlt-t{font-size:.44rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--tm);margin-bottom:.375rem;display:block}
+.rlt{font-size:.875rem;font-weight:500;color:var(--ink);transition:color .2s;line-height:1.5}
+
+/* ─── ABOUT ──────────────────────────────────────────────── */
+.about-hero{position:relative;overflow:hidden;border-bottom:1px solid var(--out);min-height:70vh;display:flex;align-items:flex-end}
+.about-inner{position:relative;z-index:2;padding:6rem 3rem;max-width:1280px;margin:0 auto;width:100%}
+.mgrid{display:grid;grid-template-columns:1fr 1fr}
+.mb{padding:3.5rem;border-right:1px solid var(--out);border-bottom:1px solid var(--out)}
+.mb h3{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:500;color:var(--ink);margin-bottom:1rem}
+.mb p{font-size:.875rem;line-height:1.85;color:var(--td)}
+
+/* About photo strip */
+.astrip{display:grid;grid-template-columns:repeat(3,1fr);height:300px;border-left:1px solid var(--out);border-top:1px solid var(--out);margin-top:3rem}
+.astrip-img{border-right:1px solid var(--out);border-bottom:1px solid var(--out);position:relative;overflow:hidden}
+.astrip-img img{width:100%;height:100%;object-fit:cover;transition:transform .7s ease;filter:brightness(.9) saturate(.75) contrast(.95)}
+.astrip-img:hover img{transform:scale(1.06);filter:brightness(1) saturate(.85) contrast(.95)}
+.astrip-cap{position:absolute;bottom:0;left:0;right:0;padding:1.25rem 1.5rem;background:linear-gradient(to top,rgba(250,248,243,.96,8,.92),transparent)}
+
+.trow-grid{display:grid;grid-template-columns:repeat(3,1fr)}
+.tc{padding:2.5rem;border-right:1px solid var(--out);border-bottom:1px solid var(--out)}
+.tav{width:48px;height:48px;background:var(--lo);border:1px solid var(--out);display:flex;align-items:center;justify-content:center;margin-bottom:1.5rem;font-family:'Playfair Display',serif;font-size:1.125rem;color:var(--forest)}
+.tc h4{font-size:1rem;font-weight:600;color:var(--ink);margin-bottom:.25rem}
+.trole{font-size:.5rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--forest);margin-bottom:1rem;display:block}
+.tc p{font-size:.8125rem;line-height:1.75;color:var(--td)}
+
+/* ─── FOOTER ─────────────────────────────────────────────── */
+footer{background:var(--lo);border-top:1px solid var(--out);padding:4rem 3rem 2rem}
+.ft{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:4rem;padding-bottom:3rem;border-bottom:1px solid var(--out);margin-bottom:2rem}
+.flogo{font-family:'Playfair Display',serif;font-size:1.125rem;font-weight:700;color:var(--ink);margin-bottom:1rem}
+.ftag{font-size:.8125rem;line-height:1.75;color:var(--tm);max-width:260px}
+.fct{font-size:.44rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--forest);margin-bottom:1.25rem;display:block}
+.fl{list-style:none}
+.fl li{margin-bottom:.875rem}
+.fl a{font-size:.8125rem;color:var(--tm);text-decoration:none;transition:color .2s;cursor:pointer}
+.fl a:hover{color:var(--ink)}
+.fb{display:flex;justify-content:space-between;align-items:center;font-size:.6875rem;color:var(--tm)}
+
+/* ─── RESPONSIVE ─────────────────────────────────────────── */
+@media(max-width:960px){
+  nav{padding:0 1.5rem}.nav-links{display:none}
+  .hero-inner,.inst-inner{grid-template-columns:1fr;min-height:auto;padding:4rem 1.5rem}
+  .sec,.ph-inner,.about-inner{padding:4rem 1.5rem}
+  .steps4,.steps3,.wgrid,.vgrid,.scards,.cgrid,.pfgrid,.mgrid,.trow-grid{grid-template-columns:1fr}
+  .srow{grid-template-columns:1fr 1fr}
+  .cta-blk{grid-template-columns:1fr;padding:2.5rem}
+  .cta-acts{align-items:flex-start}
+  .ft{grid-template-columns:1fr 1fr}
+  .ptbl-hd,.trow{grid-template-columns:1fr auto}
+  .th:nth-child(n+3),.td:nth-child(n+3){display:none}
+  .rsplit{grid-template-columns:1fr}
+  .astrip{grid-template-columns:1fr;height:auto}
+  .astrip-img{height:220px}
+  .wrap,.cta-blk{padding-left:1.5rem;padding-right:1.5rem}
+}
+
+/* ─── SCROLL REVEAL ──────────────────────────────────────── */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
+.reveal.revealed{opacity:1;transform:translateY(0)}
+
+/* ─── NAV COMPACT ────────────────────────────────────────── */
+nav{transition:height .3s,background .3s,border-color .3s}
+nav.nav-compact{height:54px;background:rgba(250,248,243,.99)}
+nav.nav-compact .logo{font-size:1.1rem}
+
+/* ─── PARALLAX IMAGES ────────────────────────────────────── */
+.para-wrap{overflow:hidden}
+.para-img{will-change:transform;transform:scale(1.1);transition:transform .05s linear}
+
+/* ─── MOBILE MENU ────────────────────────────────────────── */
+.mob-btn{display:none;flex-direction:column;gap:5px;padding:.5rem;cursor:pointer;margin-left:1rem}
+.mob-btn span{display:block;width:22px;height:2px;background:var(--ink);transition:all .25s}
+.mob-btn:hover span{background:var(--forest)}
+#mob-overlay{position:fixed;inset:0;background:rgba(13,28,17,.4);z-index:98;opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+#mob-overlay.ov-vis{opacity:1;pointer-events:all}
+#mob-menu{position:fixed;top:0;right:0;height:100%;width:280px;background:var(--cream);border-left:1px solid var(--out);z-index:99;transform:translateX(100%);transition:transform .32s cubic-bezier(.22,1,.36,1);padding:5rem 2rem 2rem;display:flex;flex-direction:column;gap:.25rem}
+#mob-menu.mopen{transform:translateX(0)}
+.mob-close{position:absolute;top:1.25rem;right:1.25rem;width:38px;height:38px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--td);border:1px solid var(--out);transition:color .2s,border-color .2s}
+.mob-close:hover{color:var(--ac);border-color:var(--ac)}
+.mob-nl{font-size:.68rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--td);padding:1rem 1.25rem;cursor:pointer;border-left:2px solid transparent;transition:color .2s,border-color .2s,background .2s}
+.mob-nl:hover,.mob-nl.on{color:var(--forest);border-left-color:var(--forest);background:rgba(27,61,41,.05)}
+.mob-cta{margin-top:auto;background:var(--forest);color:var(--cream);font-size:.6rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:.875rem;border:none;cursor:pointer;transition:background .2s}
+.mob-cta:hover{background:var(--ink)}
+
+/* ─── HASH BLINK ─────────────────────────────────────────── */
+.hash-val{transition:opacity .3s}
+
+/* ─── INTERACTIONS ───────────────────────────────────────── */
+.scard{transition:transform .3s ease,box-shadow .3s ease}
+.scard:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(13,28,17,.12)}
+.step{transition:background .2s}
+.step:hover{background:rgba(13,28,17,.03)}
+.trow{position:relative}
+.trow::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--forest);transform:scaleY(0);transition:transform .22s}
+.trow:hover::before{transform:scaleY(1)}
+@keyframes fillBar{from{width:0}to{width:67%}}
+.pfill{animation:fillBar 1.6s cubic-bezier(.22,1,.36,1) .4s both;background:var(--forest)!important}
+
+/* ─── PAGE ENTER ─────────────────────────────────────────── */
+@keyframes fu{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+.page.on{animation:fu .3s ease forwards}
+
+/* ─── MOBILE ADDITIONS ───────────────────────────────────── */
+@media(max-width:960px){
+  .mob-btn{display:flex}
+  .nav-btn{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo" onclick="go('home')">Ōd<span>·</span>Protocol</div>
+  <div class="nav-links">
+    <div class="nl on" data-p="home" onclick="go('home')">Home</div>
+    <div class="nl" data-p="product" onclick="go('product')">Product</div>
+    <div class="nl" data-p="solutions" onclick="go('solutions')">Solutions</div>
+    <div class="nl" data-p="projects" onclick="go('projects')">Projects</div>
+    <div class="nl" data-p="institutions" onclick="go('institutions')">Institutions</div>
+    <div class="nl" data-p="resources" onclick="go('resources')">Resources</div>
+    <div class="nl" data-p="about" onclick="go('about')">About</div>
+  </div>
+  <button class="nav-btn" onclick="cta()">Request Intro Call</button>
+  <button class="mob-btn" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile overlay + menu -->
+<div id="mob-overlay" onclick="closeMenu()"></div>
+<div id="mob-menu">
+  <div class="mob-close" onclick="closeMenu()">
+    <span class="material-symbols-outlined" style="font-size:1.125rem">close</span>
+  </div>
+  <div class="mob-nl on" data-p="home" onclick="menuGo('home')">Home</div>
+  <div class="mob-nl" data-p="product" onclick="menuGo('product')">Product</div>
+  <div class="mob-nl" data-p="solutions" onclick="menuGo('solutions')">Solutions</div>
+  <div class="mob-nl" data-p="projects" onclick="menuGo('projects')">Projects</div>
+  <div class="mob-nl" data-p="institutions" onclick="menuGo('institutions')">Institutions</div>
+  <div class="mob-nl" data-p="resources" onclick="menuGo('resources')">Resources</div>
+  <div class="mob-nl" data-p="about" onclick="menuGo('about')">About</div>
+  <button class="mob-cta" onclick="menuGo('home');cta()">Request Intro Call</button>
+</div>
+
+<!-- ══════════════════════════════════════════ HOME ══ -->
+<div class="page on" id="page-home">
+
+  <!-- Hero — aerial tropical forest coastline backdrop -->
+  <div class="home-hero-wrap para-wrap">
+    <img class="photo-bg" src="https://images.pexels.com/photos/35072715/pexels-photo-35072715.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&dpr=1" alt="Aerial tropical coastline APAC" class="para-img" loading="eager"/>
+    <div class="ov" style="background:linear-gradient(105deg,rgba(250,248,243,.88) 42%,rgba(250,248,243,.12) 100%)"></div>
+    <!-- Subtle grid overlay for data-protocol feel -->
+    <div class="ov" style="background-image:linear-gradient(rgba(13,28,17,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(13,28,17,.04) 1px,transparent 1px);background-size:72px 72px;opacity:1"></div>
+
+    <div class="hero-inner">
+      <div>
+        <div class="badge">
+          <div class="pulse"></div>
+          <span class="lbl">Protocol Engine · Live Transmission</span>
+        </div>
+        <h1 class="hero-title serif" style="margin-bottom:2rem">
+          The Missing Protocol<br/>
+          Between <em>Climate Capital</em><br/>
+          and Real Projects.
+        </h1>
+        <p class="hero-sub">
+          Ōd structures $2–10M climate projects in Asia-Pacific into investment-ready,
+          verifiable assets — then orchestrates grants and private capital, milestone by milestone.
+        </p>
+        <div class="hero-actions">
+          <button class="btn btn-p" onclick="cta()">Request an Intro Call</button>
+          <button class="btn btn-g" onclick="go('product')">Read the White Paper →</button>
+        </div>
+      </div>
+      <!-- Engine Card -->
+      <div class="ec">
+        <div class="ec-hd">
+          <span class="lbl-muted">Protocol Engine // v1.0.4</span>
+          <div class="live"><div class="pulse"></div>Live</div>
+        </div>
+        <div style="margin-bottom:1.5rem">
+          <div class="egc-l">Milestone Progress</div>
+          <div style="font-family:'Playfair Display',serif;font-size:1.75rem;color:var(--ink);letter-spacing:-.02em">02 → 03</div>
+          <div class="pbar"><div class="pfill"></div></div>
+        </div>
+        <div class="ec-grid">
+          <div class="egc"><div class="egc-l">Verification</div><div class="egc-v">VALIDATED</div></div>
+          <div class="egc"><div class="egc-l">Committed Capital</div><div class="egc-v">$4.2M</div></div>
+          <div class="egc"><div class="egc-l">Oracle Confidence</div><div class="egc-v">99.824%</div></div>
+          <div class="egc"><div class="egc-l">Active Projects</div><div class="egc-v">3</div></div>
+        </div>
+        <div class="hash">
+          <div>LOC_REF: 1.3521° N, 103.8198° E</div>
+          <div>ORACLE_CONFIDENCE: 0.99824</div>
+          <div>HASH: <span class="hash-val">0x8f2d...e4a1</span></div>
+          <div>STATUS: BLOCK_CONFIRMED</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div class="srow">
+    <div class="scell reveal"><div class="snum serif">$1.1T</div><div class="lbl-muted">Annual Climate Finance Need in APAC</div></div>
+    <div class="scell reveal"><div class="snum serif">$800B</div><div class="lbl-muted">Current Annual Gap Unaddressed</div></div>
+    <div class="scell reveal"><div class="snum serif">$2–10M</div><div class="lbl-muted">Our Target Ticket Size — The Missing Middle</div></div>
+  </div>
+
+  <!-- Problem -->
+  <section class="sec sec-lo">
+    <div class="wrap">
+      <div class="lbl" style="margin-bottom:1.5rem">The Problem</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start">
+        <h2 class="serif" style="font-size:clamp(2rem,3.5vw,3rem);font-weight:500;letter-spacing:-.02em;line-height:1.2;color:var(--ink)">Capital exists.<br/>Projects exist.<br/><span style="color:var(--forest);font-style:italic">The protocol doesn't.</span></h2>
+        <div>
+          <p style="font-size:.9375rem;line-height:1.8;color:var(--td);margin-bottom:2rem">Asia-Pacific's $2–10M climate projects — the essential mid-market — are systemically missed by global capital. Institutions lack a shared trust standard. Developers lack institutional language. The result: $800B sits idle while viable projects stall.</p>
+          <p style="font-size:.9375rem;line-height:1.8;color:var(--td)">Ōd is not a fund. It is the infrastructure layer that makes the transaction possible — a protocol that both sides of the table can trust.</p>
+        </div>
+      </div>
+      <div class="gb steps3" style="margin-top:3rem">
+        <div class="step gc reveal"><div class="lbl-muted" style="margin-bottom:.875rem">Gap 01</div><h4>$800B Annual Gap</h4><p>APAC needs $1.1T/year. The $2–10M mid-market is systemically missed by global capital and institutional mandates.</p></div>
+        <div class="step gc reveal"><div class="lbl-muted" style="margin-bottom:.875rem">Gap 02</div><h4>No Shared Standard</h4><p>Institutions lack a standardized protocol they can trust at mid-ticket scale. Due diligence costs kill deals before they start.</p></div>
+        <div class="step gc reveal"><div class="lbl-muted" style="margin-bottom:.875rem">Gap 03</div><h4>Projects Left Behind</h4><p>Local developers possess the impact but lack the institutional language and verifiable evidence trails required by global banks.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="sec">
+    <div class="wrap">
+      <div class="lbl" style="margin-bottom:1.5rem">How Ōd Works</div>
+      <h2 class="serif" style="font-size:clamp(2rem,3.5vw,3rem);font-weight:500;letter-spacing:-.02em;color:var(--ink)">One protocol. Four layers.<br/>Capital that actually moves.</h2>
+      <div class="gb steps4" style="margin-top:3.5rem">
+        <div class="step gc reveal"><div class="sn serif">01</div><h4>Structure</h4><p>We reshape local climate projects into institutional-grade, investment-ready vehicles with standardized legal and financial wrappers.</p></div>
+        <div class="step gc reveal"><div class="sn serif">02</div><h4>Milestone Ladder</h4><p>A shared digital roadmap where every operational step is defined. Each completed milestone unlocks the next tranche of capital.</p></div>
+        <div class="step gc reveal"><div class="sn serif">03</div><h4>Evidence</h4><p>Third-party experts, IoT sensors, and satellite imagery build unalterable proof trails that satisfy institutional compliance requirements.</p></div>
+        <div class="step gc reveal"><div class="sn serif">04</div><h4>Capital</h4><p>Verification of milestones triggers automated releases. Full transparency for grant makers and private investors through the lifecycle.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- For Who -->
+  <section class="sec sec-lo">
+    <div class="wrap">
+      <div class="lbl" style="margin-bottom:1.5rem">Who It's For</div>
+      <h2 class="serif" style="font-size:clamp(2rem,3.5vw,2.5rem);font-weight:500;letter-spacing:-.02em;color:var(--ink)">We don't replace what banks do.<br/><span style="font-style:italic;color:var(--ac)">We make their $2–10M deals possible.</span></h2>
+      <div class="gb wgrid" style="margin-top:3rem">
+        <div class="wcard gc reveal"><span class="material-symbols-outlined ico">account_balance</span><h4>For Banks & DFIs</h4><p>Risk-mitigated milestone disbursements and automated net-zero reporting that plugs directly into existing institutional stacks and compliance frameworks.</p></div>
+        <div class="wcard gc reveal"><span class="material-symbols-outlined ico">eco</span><h4>For Projects</h4><p>A clear, accelerated path to operational scale. Standardized proof markers reduce the burden of bespoke reporting and lower the cost of capital.</p></div>
+        <div class="wcard gc reveal"><span class="material-symbols-outlined ico">groups</span><h4>For Grant Makers</h4><p>Grant capital tied strictly to verifiable impact milestones, ensuring a crowd-in effect for private institutional capital alongside public funding.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="sec" id="cta-s">
+    <div class="wrap">
+      <div class="cta-blk">
+        <div>
+          <div class="lbl" style="margin-bottom:1.5rem">Pre-Seed Round · Open</div>
+          <h2>$1M to prove the protocol<br/>on <em>real transactions</em>.</h2>
+          <p style="font-size:.9375rem;line-height:1.75;color:var(--td);margin-top:1.5rem;max-width:520px">Pre-incorporation. Raising a $1M pre-seed to build the MVP, run 1–2 live pilots with at least one institutional partner, and formalize our APAC network.</p>
+        </div>
+        <div class="cta-acts">
+          <div style="text-align:right;margin-bottom:1rem">
+            <div class="lbl" style="margin-bottom:.5rem">Seeking</div>
+            <div class="serif" style="font-size:2.5rem;letter-spacing:-.03em;color:var(--ink)">$1,000,000</div>
+            <div class="lbl-muted" style="margin-top:.2rem">Pre-Seed · APAC</div>
+          </div>
+          <button class="btn btn-p">Request an Intro Call</button>
+          <button class="btn btn-g" onclick="go('resources')">Read the White Paper</button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <hr class="div"/>
+</div>
+
+<!-- ══════════════════════════════════════════ PRODUCT ══ -->
+<div class="page" id="page-product">
+
+  <!-- Hero — satellite earth view backdrop -->
+  <div class="ph-hero">
+    <img class="photo-bg" src="https://images.pexels.com/photos/586072/pexels-photo-586072.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&dpr=1" alt="Satellite view of Earth" loading="lazy" style="filter:brightness(.85) saturate(.6)"/>
+    <div class="ov" style="background:linear-gradient(110deg,rgba(250,248,243,.92) 48%,rgba(250,248,243,.08) 100%)"></div>
+    <div class="ph-inner" style="max-width:1280px;margin:0 auto;padding:7rem 3rem;display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center">
+      <div>
+        <div class="lbl" style="margin-bottom:1.5rem">The Ōd Engine</div>
+        <h1 class="serif" style="font-size:clamp(2.5rem,4.5vw,4rem);font-weight:500;line-height:1.1;letter-spacing:-.025em;color:var(--ink);margin-bottom:1.75rem">The Verification and<br/>Capital Orchestration<br/><em style="color:var(--forest)">Layer.</em></h1>
+        <p style="font-size:1rem;line-height:1.75;color:var(--td);max-width:480px;margin-bottom:3rem">A multi-source verification protocol that transforms environmental data into bankable, auditable financial instruments.</p>
+        <div style="display:flex;gap:1rem;flex-wrap:wrap">
+          <button class="btn btn-p">Request Technical Briefing</button>
+          <button class="btn btn-g">View Live Dashboard →</button>
+        </div>
+      </div>
+      <div>
+        <div class="lbl" style="margin-bottom:1.5rem">Protocol Architecture</div>
+        <div class="ldiag">
+          <div class="layer" style="background:var(--mid)"><div><div class="lnum">Layer 01</div><div class="lname serif">Data Layer</div></div><div style="display:flex;align-items:center;gap:.75rem"><span style="font-size:.6875rem;color:var(--tm)">IoT + Satellite + Oracle</span><div class="ldot" style="opacity:.4"></div></div></div>
+          <div class="layer la" style="background:rgba(13,61,41,.05);border-left:3px solid var(--forest)"><div><div class="lnum">Layer 02</div><div class="lname serif">Verification Layer</div></div><div style="display:flex;align-items:center;gap:.75rem"><span style="font-size:.6875rem;color:var(--forest)">Active · Validating</span><div class="ldot"></div></div></div>
+          <div class="layer" style="background:var(--mid)"><div><div class="lnum">Layer 03</div><div class="lname serif">Escrow & Release</div></div><div style="display:flex;align-items:center;gap:.75rem"><span style="font-size:.6875rem;color:var(--tm)">Awaiting Confirmation</span><div class="ldot" style="opacity:.3"></div></div></div>
+          <div class="layer" style="background:var(--mid)"><div><div class="lnum">Layer 04</div><div class="lname serif">Capital Release</div></div><div style="display:flex;align-items:center;gap:.75rem"><span style="font-size:.6875rem;color:var(--tm)">Locked</span><div class="ldot" style="opacity:.15"></div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Verification Mechanics -->
+  <section class="sec sec-lo">
+    <div class="wrap">
+      <div class="lbl" style="margin-bottom:1.5rem">How Verification Works</div>
+      <h2 class="serif" style="font-size:clamp(1.75rem,3vw,2.5rem);font-weight:500;letter-spacing:-.02em;color:var(--ink)">Multi-source. Tamper-proof. Audit-ready.</h2>
+      <div class="gb vgrid" style="margin-top:3rem">
+        <div class="vc gc"><span class="material-symbols-outlined ico">satellite_alt</span><h4>Satellite Monitoring</h4><p>Hyperspectral imaging and temporal analysis to verify land-use change and biomass density with sub-meter precision across all project geographies.</p></div>
+        <div class="vc gc"><span class="material-symbols-outlined ico">sensors</span><h4>IoT Sensor Network</h4><p>In-situ soil sensors, water quality probes, and acoustic monitoring providing real-time cryptographic ground-truth for live project states.</p></div>
+        <div class="vc gc"><span class="material-symbols-outlined ico">hub</span><h4>Oracle Consensus</h4><p>A decentralized network of domain-expert oracles validating multi-source data before ledger finality and capital release authorization.</p></div>
+      </div>
+      <div class="cblk">
+        <div class="cblk-hd"><span style="color:var(--tm)">VERIFICATION_HASH_DEBUG · v2.0</span><span style="color:var(--forest);font-weight:600">Status: Confirmed</span></div>
+        <span class="k">{"protocol"</span>: <span class="v">"OD_VERIFY_ALPHA"</span>, <span class="k">"block_height"</span>: <span class="n">8421009</span>,<br/>
+        &nbsp;<span class="k">"verification_vector"</span>: [<br/>
+        &nbsp;&nbsp;{ <span class="k">"source"</span>: <span class="v">"SATELLITE_A1"</span>, <span class="k">"confidence"</span>: <span class="n">0.982</span> },<br/>
+        &nbsp;&nbsp;{ <span class="k">"source"</span>: <span class="v">"IOT_MESH_7"</span>, <span class="k">"confidence"</span>: <span class="n">0.991</span> },<br/>
+        &nbsp;&nbsp;{ <span class="k">"source"</span>: <span class="v">"ORACLE_NODE_22"</span>, <span class="k">"attestation"</span>: <span class="v">"SIG_VALID_228fX"</span> }],<br/>
+        <span class="k">"proof_root"</span>: <span class="v">"0x7f4c...91b2"</span>, <span class="k">"capital_release_authorized"</span>: <span class="n">true</span><span class="k">}</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Escrow -->
+  <section class="sec">
+    <div class="wrap">
+      <div class="lbl" style="margin-bottom:1.5rem">Capital Mechanics</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start">
+        <div>
+          <h2 class="serif" style="font-size:clamp(1.75rem,3vw,2.5rem);font-weight:500;letter-spacing:-.02em;color:var(--ink);margin-bottom:1.5rem">Milestone-gated escrow.<br/><em style="color:var(--forest)">Automated and auditable.</em></h2>
+          <p style="font-size:.9375rem;line-height:1.8;color:var(--td);margin-bottom:2rem">Capital committed at the start. Released automatically as each milestone clears verification. No discretionary disbursement. Pure protocol logic.</p>
+          <button class="btn btn-p">View Technical Documentation</button>
+        </div>
+        <div style="border:1px solid var(--out)">
+          <div style="padding:1.5rem 2rem;border-bottom:1px solid var(--out);display:flex;justify-content:space-between;align-items:center"><span class="lbl-muted">Escrow State Machine</span><div class="live"><div class="pulse"></div>Live</div></div>
+          <div style="padding:1.25rem;display:flex;flex-direction:column;gap:1px;background:var(--out)">
+            <div style="background:var(--lo);padding:1.25rem 1.5rem;display:flex;justify-content:space-between;align-items:center"><div><div class="egc-l">Milestone 01</div><div style="font-size:.875rem;color:var(--ink)">Baseline Verification</div></div><div class="pill pill-a"><div class="dot"></div>Released</div></div>
+            <div style="background:rgba(13,61,41,.06);padding:1.25rem 1.5rem;display:flex;justify-content:space-between;align-items:center;border-left:3px solid var(--forest)"><div><div class="egc-l">Milestone 02</div><div style="font-size:.875rem;color:var(--forest);font-weight:600">Operational Phase</div></div><div class="pill pill-a"><div class="dot"></div>Validating</div></div>
+            <div style="background:var(--lo);padding:1.25rem 1.5rem;display:flex;justify-content:space-between;align-items:center"><div><div class="egc-l">Milestone 03</div><div style="font-size:.875rem;color:var(--td)">Reporting Period</div></div><div class="pill pill-p"><div class="dot"></div>Locked</div></div>
+            <div style="background:var(--lo);padding:1.25rem 1.5rem;display:flex;justify-content:space-between;align-items:center"><div><div class="egc-l">Milestone 04</div><div style="font-size:.875rem;color:var(--td)">Final Audit</div></div><div class="pill pill-p"><div class="dot"></div>Locked</div></div>
+          </div>
+          <div style="padding:1rem 2rem;font-size:.48rem;color:var(--tm);letter-spacing:.06em">TOTAL_ESCROWED: $4.2M · RELEASED: $1.1M · PENDING: $3.1M</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <hr class="div"/>
+</div>
+
+<!-- ══════════════════════════════════════════ SOLUTIONS ══ -->
+<div class="page" id="page-solutions">
+
+  <!-- Hero — stunning aerial tropical coastline (same image, different crop/overlay treatment) -->
+  <div class="ph-hero" style="min-height:440px;display:flex;align-items:flex-end">
+    <img class="photo-bg" src="https://images.pexels.com/photos/35072715/pexels-photo-35072715.jpeg?auto=compress&cs=tinysrgb&w=1920&h=900&dpr=1" alt="Tropical forest APAC" loading="lazy"/>
+    <div class="ov" style="background:linear-gradient(to bottom,rgba(250,248,243,.08) 0%,rgba(250,248,243,.88) 75%,rgba(250,248,243,.96) 100%)"></div>
+    <div class="ph-inner wrap" style="padding-bottom:4rem;padding-top:4rem">
+      <div class="lbl" style="margin-bottom:1.5rem">Deployment Verticals</div>
+      <h1 class="serif" style="font-size:clamp(2.5rem,5vw,4rem);font-weight:500;line-height:1.1;letter-spacing:-.025em;color:var(--ink);max-width:700px">Three pathways.<br/>One <em style="color:var(--forest)">verified</em> outcome.</h1>
+      <p style="font-size:1rem;line-height:1.75;color:var(--td);max-width:560px;margin-top:1.5rem">Nature-Based Solutions, Regenerative Agriculture, and Resilient Infrastructure — each with a dedicated verification framework and capital pathway.</p>
+    </div>
+  </div>
+
+  <!-- Solution Cards with premium photos -->
+  <section class="sec">
+    <div class="wrap">
+      <div class="gb scards" style="margin-top:0">
+        <!-- NBS — mangrove aerial Mexico -->
+        <div class="scard gc reveal">
+          <div class="sphoto">
+            <img src="https://images.pexels.com/photos/29860697/pexels-photo-29860697.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&dpr=1" alt="Mangrove aerial" loading="lazy"/>
+            <div class="sphoto-ov"></div>
+            <div class="sphoto-tag"><span class="lbl">Nature-Based Solutions</span></div>
+            <div class="sphoto-n">01</div>
+          </div>
+          <div class="sbody">
+            <div class="lbl-muted" style="margin-bottom:1.25rem">Pathway 01</div>
+            <h3>Forests, wetlands, and coastal ecosystems — quantified and bankable.</h3>
+            <div class="spec"><div class="spec-l">Verification Type</div><div class="spec-v">Satellite + IoT biomass monitoring.</div></div>
+            <div class="spec"><div class="spec-l">Capital Pathway</div><div class="spec-v">Article 9 fund access, sovereign green bonds.</div></div>
+            <div class="spec"><div class="spec-l">Compliance</div><div class="spec-v">SFDR Art. 9 · VCS Compatible · TCFD Aligned</div></div>
+            <div class="sm"><div class="sm-n serif">450</div><span class="sm-l">Tonnes CO₂e/Ha/Year</span></div>
+          </div>
+        </div>
+        <!-- Regen Ag — Banaue rice terraces Philippines, geometric, stunning -->
+        <div class="scard gc reveal">
+          <div class="sphoto">
+            <img src="https://images.pexels.com/photos/2516406/pexels-photo-2516406.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&dpr=1" alt="Rice terraces Philippines" loading="lazy"/>
+            <div class="sphoto-ov"></div>
+            <div class="sphoto-tag"><span class="lbl">Regenerative Agriculture</span></div>
+            <div class="sphoto-n">02</div>
+          </div>
+          <div class="sbody">
+            <div class="lbl-muted" style="margin-bottom:1.25rem">Pathway 02</div>
+            <h3>Soil carbon sequestration, verified to institutional grade at scale.</h3>
+            <div class="spec"><div class="spec-l">Verification Type</div><div class="spec-v">Soil sensor network + satellite NDVI.</div></div>
+            <div class="spec"><div class="spec-l">Capital Pathway</div><div class="spec-v">Blended finance, agricultural DFI instruments.</div></div>
+            <div class="spec"><div class="spec-l">Compliance</div><div class="spec-v">VCS Compatible · CORSIA Eligible</div></div>
+            <div class="sm"><div class="sm-n serif">2.1–4.7</div><span class="sm-l">Tonnes CO₂e/Ha/Year</span></div>
+          </div>
+        </div>
+        <!-- Infrastructure — Bangkok aerial at night -->
+        <div class="scard gc reveal">
+          <div class="sphoto">
+            <img src="https://images.pexels.com/photos/3121347/pexels-photo-3121347.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&dpr=1" alt="Bangkok urban infrastructure aerial" loading="lazy"/>
+            <div class="sphoto-ov"></div>
+            <div class="sphoto-tag"><span class="lbl">Resilient Infrastructure</span></div>
+            <div class="sphoto-n">03</div>
+          </div>
+          <div class="sbody">
+            <div class="lbl-muted" style="margin-bottom:1.25rem">Pathway 03</div>
+            <h3>Flood barriers, renewable microgrids, and climate-proof assets.</h3>
+            <div class="spec"><div class="spec-l">Verification Type</div><div class="spec-v">Engineering sensor IoT + satellite monitoring.</div></div>
+            <div class="spec"><div class="spec-l">Capital Pathway</div><div class="spec-v">Infrastructure bonds, climate adaptation finance.</div></div>
+            <div class="spec"><div class="spec-l">Compliance</div><div class="spec-v">TCFD · MAS Green Taxonomy · Climate Bond</div></div>
+            <div class="sm"><div class="sm-n serif">$1.2–8M</div><span class="sm-l">Typical Project Size</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Compliance -->
+  <section class="sec sec-lo">
+    <div class="wrap">
+      <div class="lbl" style="margin-bottom:1.5rem">Regulatory Alignment</div>
+      <h2 class="serif" style="font-size:clamp(1.75rem,3vw,2.5rem);font-weight:500;letter-spacing:-.02em;color:var(--ink)">Aligned with international standards.</h2>
+      <div class="gb cgrid" style="margin-top:3rem">
+        <div class="cc gc reveal"><div class="cname">SFDR ART.9</div><div class="cdesc">Full alignment with Sustainable Finance Disclosure Regulation high-impact mandates.</div></div>
+        <div class="cc gc reveal"><div class="cname">TCFD</div><div class="cdesc">Data granularity optimized for Task Force on Climate-related Financial Disclosures.</div></div>
+        <div class="cc gc reveal"><div class="cname">VCS Compatible</div><div class="cdesc">Methodologies mapped to Verified Carbon Standard for seamless credit integration.</div></div>
+        <div class="cc gc reveal"><div class="cname">CORSIA Eligible</div><div class="cdesc">Tiered verification structures meeting ICAO aviation offset compliance requirements.</div></div>
+      </div>
+      <div style="margin-top:3rem"><button class="btn btn-p">Download Methodology Paper</button></div>
+    </div>
+  </section>
+  <hr class="div"/>
+</div>
+
+<!-- ══════════════════════════════════════════ PROJECTS ══ -->
+<div class="page" id="page-projects">
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="lbl" style="margin-bottom:1.5rem">Pipeline</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:end;margin-bottom:1rem">
+        <h1 class="serif" style="font-size:clamp(2.5rem,5vw,4rem);font-weight:500;line-height:1.1;letter-spacing:-.025em;color:var(--ink)">Active Pipeline.<br/><em style="color:var(--forest)">Verified Projects.</em></h1>
+        <p style="font-size:.9375rem;line-height:1.75;color:var(--td)">Ōd Protocol's active and forthcoming project cohort. Each project undergoes structured intake, milestone definition, and verification protocol before capital is committed.</p>
+      </div>
+
+      <div class="ptbl">
+        <div class="ptbl-hd">
+          <div class="th">Project</div><div class="th">Geography</div><div class="th">Vertical</div><div class="th">Target</div><div class="th">Status</div>
+        </div>
+        <!-- Kalimantan Mangrove — aerial mangrove river (Djimmer Koster, Netherlands) -->
+        <div class="trow reveal">
+          <div class="pmain">
+            <img class="pthumb" src="https://images.pexels.com/photos/29137616/pexels-photo-29137616.jpeg?auto=compress&cs=tinysrgb&w=200&h=140&dpr=1" alt="Mangrove Kalimantan"/>
+            <div><div class="tdp">Kalimantan Mangrove Restoration</div><div class="tds">Borneo · Nature-Based Solutions</div></div>
+          </div>
+          <div class="td">Indonesia</div><div class="td">NBS</div><div class="td">$7.2M</div>
+          <div><div class="pill pill-a"><div class="dot"></div>Active</div></div>
+        </div>
+        <!-- Mekong Delta — Vietnam rice terraces / agricultural landscape -->
+        <div class="trow reveal">
+          <div class="pmain">
+            <img class="pthumb" src="https://images.pexels.com/photos/28955424/pexels-photo-28955424.jpeg?auto=compress&cs=tinysrgb&w=200&h=140&dpr=1" alt="Mekong Vietnam"/>
+            <div><div class="tdp">Mekong Delta Water Quality</div><div class="tds">Vietnam · Infrastructure</div></div>
+          </div>
+          <div class="td">Vietnam</div><div class="td">Infra</div><div class="td">$3.8M</div>
+          <div><div class="pill pill-a"><div class="dot"></div>Active</div></div>
+        </div>
+        <!-- Bangkok — aerial night cityscape -->
+        <div class="trow reveal">
+          <div class="pmain">
+            <img class="pthumb" src="https://images.pexels.com/photos/35359768/pexels-photo-35359768.jpeg?auto=compress&cs=tinysrgb&w=200&h=140&dpr=1" alt="Bangkok aerial"/>
+            <div><div class="tdp">Bangkok Urban Air Quality</div><div class="tds">Thailand · Infrastructure</div></div>
+          </div>
+          <div class="td">Thailand</div><div class="td">Infra</div><div class="td">$4.1M</div>
+          <div><div class="pill pill-a"><div class="dot"></div>Validating</div></div>
+        </div>
+        <!-- Luzon Philippines — Banaue rice terraces aerial -->
+        <div class="trow reveal">
+          <div class="pmain">
+            <img class="pthumb" src="https://images.pexels.com/photos/2516406/pexels-photo-2516406.jpeg?auto=compress&cs=tinysrgb&w=200&h=140&dpr=1" alt="Luzon Philippines"/>
+            <div><div class="tdp">Luzon Regenerative Agriculture</div><div class="tds">Philippines · Regen Ag</div></div>
+          </div>
+          <div class="td">Philippines</div><div class="td">Regen Ag</div><div class="td">$2.3M</div>
+          <div><div class="pill pill-p"><div class="dot"></div>In Review</div></div>
+        </div>
+        <!-- Malaysia Forest — aerial tropical forest Southeast Asia -->
+        <div class="trow reveal">
+          <div class="pmain">
+            <img class="pthumb" src="https://images.pexels.com/photos/18525510/pexels-photo-18525510.jpeg?auto=compress&cs=tinysrgb&w=200&h=140&dpr=1" alt="Malaysia forest"/>
+            <div><div class="tdp">Peninsular Malaysia Forest Carbon</div><div class="tds">Malaysia · Nature-Based Solutions</div></div>
+          </div>
+          <div class="td">Malaysia</div><div class="td">NBS</div><div class="td">$9.5M</div>
+          <div><div class="pill pill-p"><div class="dot"></div>Intake</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="sec sec-lo">
+    <div class="wrap">
+      <div class="lbl" style="margin-bottom:1.5rem">Project Infrastructure</div>
+      <h2 class="serif" style="font-size:clamp(1.75rem,3vw,2.5rem);font-weight:500;letter-spacing:-.02em;color:var(--ink)">What every Ōd project receives.</h2>
+      <div class="gb pfgrid" style="margin-top:3rem">
+        <div class="pfc gc reveal"><div class="lbl" style="margin-bottom:1rem">01</div><h4>Structured Intake</h4><p>Every project undergoes a 30-day structured intake: technical feasibility, legal wrapper assessment, milestone architecture, and capital sizing.</p></div>
+        <div class="pfc gc reveal"><div class="lbl" style="margin-bottom:1rem">02</div><h4>Live Verification Dashboard</h4><p>A real-time environment pulling from satellite feeds, IoT mesh networks, and oracle consensus — visible to all authorized stakeholders.</p></div>
+        <div class="pfc gc reveal"><div class="lbl" style="margin-bottom:1rem">03</div><h4>Institutional Reporting</h4><p>Automated generation of TCFD-aligned, SFDR-compatible quarterly reports. Zero bespoke reporting burden for project developers.</p></div>
+        <div class="pfc gc reveal"><div class="lbl" style="margin-bottom:1rem">04</div><h4>Capital Network Access</h4><p>Warm introduction to Ōd's institutional partner network — banks, DFIs, family offices, and grant agencies active in APAC climate finance.</p></div>
+        <div class="pfc gc reveal"><div class="lbl" style="margin-bottom:1rem">05</div><h4>Milestone Escrow</h4><p>Smart escrow structure with milestone-gated disbursements. Capital locked until verified milestones clear. Automated release on confirmation.</p></div>
+        <div class="pfc gc reveal"><div class="lbl" style="margin-bottom:1rem">06</div><h4>Compliance Layer</h4><p>Full mapping to SFDR Art. 9, VCS, CORSIA, and regional taxonomy standards. Regulatory alignment built into the protocol — not added later.</p></div>
+      </div>
+    </div>
+  </section>
+  <hr class="div"/>
+</div>
+
+<!-- ══════════════════════════════════════════ INSTITUTIONS ══ -->
+<div class="page" id="page-institutions">
+
+  <!-- Hero — Singapore financial district at night (DBS, HSBC, Standard Chartered) -->
+  <div class="inst-hero para-wrap">
+    <img class="photo-bg" src="https://images.pexels.com/photos/32229751/pexels-photo-32229751.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&dpr=1" alt="Singapore financial district" class="para-img" loading="lazy" style="filter:brightness(.8) saturate(.75)"/>
+    <div class="ov" style="background:linear-gradient(to right,rgba(250,248,243,.94) 42%,rgba(250,248,243,.05) 100%)"></div>
+    <div class="inst-inner">
+      <div>
+        <div class="lbl" style="margin-bottom:1.5rem">For Banks & Institutions</div>
+        <h1 class="serif" style="font-size:clamp(2.5rem,4.5vw,3.75rem);font-weight:500;line-height:1.1;letter-spacing:-.025em;color:var(--ink);margin-bottom:1.75rem">Institutional-grade infrastructure for<br/><em style="color:var(--forest)">climate deal flow.</em></h1>
+        <p style="font-size:1rem;line-height:1.75;color:var(--td);max-width:500px;margin-bottom:2.5rem">Ōd provides the verification scaffolding that makes $2–10M APAC climate transactions compliant, auditable, and investable for your ESG mandate and risk committee.</p>
+        <button class="btn btn-p">Request Institutional Briefing</button>
+      </div>
+      <div style="background:rgba(250,248,243,.96);border:1px solid var(--out);padding:3rem;backdrop-filter:blur(16px);box-shadow:0 8px 32px rgba(13,28,17,.1)">
+        <div class="lbl-muted" style="margin-bottom:1.75rem">What Ōd Solves for Institutions</div>
+        <ul class="chklist">
+          <li>Eliminates bespoke due diligence — standardized verification framework across all projects</li>
+          <li>Automated TCFD and SFDR Art. 9 reporting for compliance-ready deal documentation</li>
+          <li>Milestone-gated capital disbursement — no discretionary risk, pure protocol logic</li>
+          <li>IoT + satellite + oracle multi-source data reduces fraud and measurement risk</li>
+          <li>Real-time portfolio monitoring dashboard for authorized institutional stakeholders</li>
+          <li>Warm deal flow from a vetted APAC pipeline — curated, structured, ready to transact</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Onboarding -->
+  <section class="sec sec-lo">
+    <div class="wrap">
+      <div class="lbl" style="margin-bottom:1.5rem">Institutional Onboarding</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start">
+        <div>
+          <h2 class="serif" style="font-size:clamp(1.75rem,3vw,2.5rem);font-weight:500;letter-spacing:-.02em;color:var(--ink);margin-bottom:1.5rem">From first call to first<br/><em style="color:var(--forest)">committed transaction.</em></h2>
+          <p style="font-size:.9375rem;line-height:1.8;color:var(--td)">We designed our institutional onboarding to respect your compliance process without requiring your team to rebuild their due diligence from scratch.</p>
+        </div>
+        <div class="proc">
+          <div class="ps reveal"><div class="psn serif">01</div><div><h4>Intro & Mandate Alignment</h4><p>30-minute call to map your climate mandate, ticket size, geography, and compliance requirements against Ōd's active pipeline.</p></div></div>
+          <div class="ps reveal"><div class="psn serif">02</div><div><h4>Protocol Briefing</h4><p>Technical walkthrough of the verification architecture, data sources, and compliance reporting layer with your risk and ESG teams.</p></div></div>
+          <div class="ps reveal"><div class="psn serif">03</div><div><h4>Pipeline Access</h4><p>Curated access to matching projects from the active Ōd pipeline. Full data room access for shortlisted transactions.</p></div></div>
+          <div class="ps reveal"><div class="psn serif">04</div><div><h4>Term Sheet & Escrow</h4><p>Standardized term sheet with Ōd's milestone structure. Capital committed into escrow — released automatically on verified milestone completion.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <hr class="div"/>
+</div>
+
+<!-- ══════════════════════════════════════════ RESOURCES ══ -->
+<div class="page" id="page-resources">
+  <section class="sec">
+    <div class="wrap">
+      <div class="lbl" style="margin-bottom:1.5rem">Knowledge Base</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:end;margin-bottom:3rem">
+        <h1 class="serif" style="font-size:clamp(2.5rem,5vw,4rem);font-weight:500;line-height:1.1;letter-spacing:-.025em;color:var(--ink)">Research.<br/>Methodology.<br/><em style="color:var(--forest)">Evidence.</em></h1>
+        <p style="font-size:.9375rem;line-height:1.75;color:var(--td)">Protocol documentation, methodology papers, and research on APAC climate finance infrastructure for institutional audiences.</p>
+      </div>
+      <div class="rsplit">
+        <div class="rfeat">
+          <span class="rtag">White Paper</span>
+          <h3>Ōd Protocol — The Missing Infrastructure Layer for APAC Climate Finance</h3>
+          <p>A comprehensive overview of the $800B APAC climate finance gap, the structural failure modes of existing mechanisms, and Ōd's milestone-gated verification architecture as a systemic solution.</p>
+          <div class="rmeta"><span>Version 1.2</span><span>48 pages</span><span>Q1 2025</span></div>
+          <button class="btn btn-p">Download White Paper</button>
+        </div>
+        <div class="rside">
+          <div class="lbl-muted" style="margin-bottom:1.5rem">Library</div>
+          <ul class="rlist">
+            <li><span class="rlt-t">Methodology</span><div class="rlt">Multi-Source Verification Architecture: Technical Specification v2.0</div></li>
+            <li><span class="rlt-t">Research</span><div class="rlt">The $800B Gap: Structural Analysis of APAC Climate Finance</div></li>
+            <li><span class="rlt-t">Framework</span><div class="rlt">Milestone Ladder Design Principles for Nature-Based Solutions</div></li>
+            <li><span class="rlt-t">Compliance</span><div class="rlt">SFDR Art.9 Mapping Guide for APAC Project Developers</div></li>
+            <li><span class="rlt-t">Case Study</span><div class="rlt">Kalimantan Mangrove Restoration: Verification Pilot Report</div></li>
+            <li><span class="rlt-t">Research</span><div class="rlt">Oracle Consensus in Climate Finance: A Framework</div></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="srow">
+    <div class="scell"><div class="snum serif">$1.1T</div><div class="lbl-muted">Annual APAC Climate Finance Need</div></div>
+    <div class="scell"><div class="snum serif">73%</div><div class="lbl-muted">of Projects Below $10M Receive No Institutional Capital</div></div>
+    <div class="scell"><div class="snum serif">4.2×</div><div class="lbl-muted">Average Cost Reduction vs. Bespoke Due Diligence</div></div>
+  </div>
+  <hr class="div"/>
+</div>
+
+<!-- ══════════════════════════════════════════ ABOUT ══ -->
+<div class="page" id="page-about">
+
+  <!-- Hero — Singapore aerial panorama, blue sky, APAC authority -->
+  <div class="about-hero para-wrap">
+    <img class="photo-bg" src="https://images.pexels.com/photos/18069540/pexels-photo-18069540.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&dpr=1" alt="Singapore aerial APAC" class="para-img" loading="lazy" style="filter:brightness(.85) saturate(.75)"/>
+    <div class="ov" style="background:linear-gradient(to bottom,rgba(250,248,243,.05) 0%,rgba(250,248,243,.78) 60%,rgba(250,248,243,.94) 100%)"></div>
+    <div class="about-inner">
+      <div class="lbl" style="margin-bottom:1.5rem">About Ōd Protocol</div>
+      <h1 class="serif" style="font-size:clamp(2.5rem,5vw,4.5rem);font-weight:500;line-height:1.1;letter-spacing:-.025em;color:var(--ink);max-width:800px">We built the protocol that<br/><em style="color:var(--forest)">institutional capital needs</em><br/>to reach real projects.</h1>
+    </div>
+  </div>
+
+  <!-- Manifesto -->
+  <section class="sec">
+    <div class="wrap">
+      <div class="lbl" style="margin-bottom:3rem">Founding Principle</div>
+      <div class="gb mgrid">
+        <div class="mb gc reveal"><h3>The Gap is Structural</h3><p>The APAC climate finance gap is not a capital problem. It is an infrastructure problem. Capital exists. Projects exist. The connective tissue — a shared protocol both sides can trust — doesn't. That is what Ōd is building.</p></div>
+        <div class="mb gc reveal"><h3>Trust Through Architecture</h3><p>Ōd doesn't ask institutions to trust developers. It doesn't ask developers to trust institutions. It replaces trust with architecture — a protocol that verifies, structures, and orchestrates capital flow without depending on relationships that don't yet exist.</p></div>
+        <div class="mb gc reveal"><h3>Not a Fund. A Protocol.</h3><p>Ōd does not take a position in projects. It is the infrastructure layer — the missing middle. The plumbing. Neutral, auditable, and accessible to any institution that wants deal flow without bespoke due diligence overhead.</p></div>
+        <div class="mb gc reveal"><h3>APAC-First. Global Architecture.</h3><p>The APAC region holds the highest density of under-financed, high-impact climate projects on earth. We are starting here because the gap is largest here. The protocol we are building is designed to replicate globally.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Photo Strip — 3 images: ecosystem / satellite / institutional -->
+  <div style="padding:0 3rem">
+    <div class="wrap" style="padding:0">
+      <div class="astrip">
+        <!-- Field / Ecosystem -->
+        <div class="astrip-img reveal">
+          <img src="https://images.pexels.com/photos/29860697/pexels-photo-29860697.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&dpr=1" alt="Mangrove ecosystem APAC" loading="lazy"/>
+          <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(250,248,243,.9),rgba(250,248,243,.05))"></div>
+          <div class="astrip-cap">
+            <div class="lbl">APAC Field Operations</div>
+            <div style="font-size:.75rem;color:var(--td);margin-top:.25rem">Ecosystem verification, Southeast Asia</div>
+          </div>
+        </div>
+        <!-- Satellite / Data -->
+        <div class="astrip-img reveal">
+          <img src="https://images.pexels.com/photos/586063/pexels-photo-586063.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&dpr=1" alt="Satellite orbital view" loading="lazy"/>
+          <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(250,248,243,.9),rgba(250,248,243,.05))"></div>
+          <div class="astrip-cap">
+            <div class="lbl">Verification Infrastructure</div>
+            <div style="font-size:.75rem;color:var(--td);margin-top:.25rem">Multi-source satellite monitoring layer</div>
+          </div>
+        </div>
+        <!-- Financial / Institutional -->
+        <div class="astrip-img reveal">
+          <img src="https://images.pexels.com/photos/32229751/pexels-photo-32229751.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&dpr=1" alt="Singapore financial district" loading="lazy"/>
+          <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(250,248,243,.9),rgba(250,248,243,.05))"></div>
+          <div class="astrip-cap">
+            <div class="lbl">Institutional Partner Network</div>
+            <div style="font-size:.75rem;color:var(--td);margin-top:.25rem">Singapore, APAC capital hub</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Team -->
+  <section class="sec sec-lo">
+    <div class="wrap">
+      <div class="lbl" style="margin-bottom:3rem">Founding Team</div>
+      <div class="gb trow-grid">
+        <div class="tc gc reveal"><div class="tav">Ō</div><h4>Founding Architect</h4><span class="trole">Protocol Design · APAC Strategy</span><p>Background in deep-tech climate infrastructure and institutional capital architecture. Founded multiple ventures across Southeast Asia with focus on systemic leverage points.</p></div>
+        <div class="tc gc reveal"><div class="tav">V</div><h4>Head of Verification</h4><span class="trole">Data Architecture · Oracle Systems</span><p>Specialist in multi-source environmental data systems, IoT sensor networks, and cryptographic attestation infrastructure for climate finance applications.</p></div>
+        <div class="tc gc reveal"><div class="tav">I</div><h4>Institutional Relations</h4><span class="trole">DFI Network · Capital Orchestration</span><p>Former DFI and development bank advisor with direct relationships across APAC climate capital networks. Specialized in milestone-based lending structures.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="sec" id="about-cta">
+    <div class="wrap">
+      <div class="cta-blk">
+        <div>
+          <div class="lbl" style="margin-bottom:1.5rem">Get in Touch</div>
+          <h2>We are pre-incorporation.<br/>Raising <em>$1M pre-seed.</em></h2>
+          <p style="font-size:.9375rem;line-height:1.75;color:var(--td);margin-top:1.5rem;max-width:480px">If you are a bank, DFI, family office, impact fund, or institutional grant maker active in APAC climate — we want to hear from you.</p>
+        </div>
+        <div class="cta-acts">
+          <button class="btn btn-p">Request Intro Call</button>
+          <button class="btn btn-g" onclick="go('resources')">Read the White Paper</button>
+          <div class="lbl-muted" style="text-align:right;margin-top:.5rem">Singapore entity planned · APAC HQ</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <hr class="div"/>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft">
+    <div><div class="flogo serif">Ōd Protocol</div><p class="ftag">The institutional infrastructure for verifying and financing climate projects at sovereign scale across the Asia-Pacific.</p></div>
+    <div><span class="fct">Product</span><ul class="fl"><li><a onclick="go('product')">Framework</a></li><li><a onclick="go('product')">Verification</a></li><li><a onclick="go('product')">Escrow</a></li></ul></div>
+    <div><span class="fct">Solutions</span><ul class="fl"><li><a onclick="go('solutions')">Nature-Based</a></li><li><a onclick="go('solutions')">Regen Agriculture</a></li><li><a onclick="go('solutions')">Infrastructure</a></li></ul></div>
+    <div><span class="fct">Company</span><ul class="fl"><li><a onclick="go('about')">About</a></li><li><a onclick="go('institutions')">For Institutions</a></li><li><a onclick="go('resources')">White Paper</a></li></ul></div>
+  </div>
+  <div class="fb">
+    <div>© 2025 Ōd Protocol · Pre-incorporation · Singapore entity planned · All rights reserved</div>
+    <div style="font-family:monospace;font-size:.55rem;letter-spacing:.06em">1.3521° N, 103.8198° E</div>
+  </div>
+</footer>
+
+<script>
+/* ── PAGE ROUTING ─────────────────────────────────────────── */
+let currentPage = 'home';
+
+function go(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('on'));
+  const t = document.getElementById('page-'+id);
+  if(!t) return;
+  t.classList.add('on');
+  window.scrollTo({top:0,behavior:'smooth'});
+  // Sync desktop + mobile nav
+  document.querySelectorAll('.nl,.mob-nl').forEach(l=>l.classList.toggle('on',l.dataset.p===id));
+  currentPage = id;
+  setTimeout(initReveal, 50);
+  setTimeout(animateCounters, 200);
+}
+
+function cta(){
+  go('home');
+  setTimeout(()=>{
+    const el = document.getElementById('cta-s');
+    if(el) el.scrollIntoView({behavior:'smooth'});
+  }, 120);
+}
+
+/* ── MOBILE MENU ──────────────────────────────────────────── */
+function toggleMenu(){
+  const m = document.getElementById('mob-menu');
+  const o = document.getElementById('mob-overlay');
+  const open = m.classList.toggle('menu-open');
+  o.classList.toggle('ov-vis', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+}
+
+function closeMenu(){
+  document.getElementById('mob-menu').classList.remove('menu-open');
+  document.getElementById('mob-overlay').classList.remove('ov-visible');
+  document.body.style.overflow = '';
+}
+
+function menuGo(id){
+  closeMenu();
+  go(id);
+}
+
+/* ── SCROLL REVEAL ────────────────────────────────────────── */
+function initReveal(){
+  const els = document.querySelectorAll('.page.on .reveal');
+  if(!els.length) return;
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('revealed');
+        io.unobserve(e.target);
+      }
+    });
+  }, {threshold:0.08, rootMargin:'0px 0px -40px 0px'});
+  els.forEach((el,i)=>{
+    el.style.transitionDelay = (i * 0.06) + 's';
+    io.observe(el);
+  });
+}
+
+/* ── COUNTER ANIMATION ────────────────────────────────────── */
+function animateCounters(){
+  const page = document.getElementById('page-'+currentPage);
+  if(!page) return;
+  page.querySelectorAll('.count-up:not(.counted)').forEach(el=>{
+    el.classList.add('counted');
+    const target = el.dataset.target;
+    const prefix = el.dataset.prefix||'';
+    const suffix = el.dataset.suffix||'';
+    const isDecimal = target.includes('.');
+    const num = parseFloat(target);
+    let start = null;
+    const duration = 1800;
+    const easeOut = t => 1 - Math.pow(1-t, 3);
+    function tick(ts){
+      if(!start) start = ts;
+      const progress = Math.min((ts-start)/duration,1);
+      const val = num * easeOut(progress);
+      el.textContent = prefix + (isDecimal ? val.toFixed(1) : Math.floor(val).toLocaleString()) + suffix;
+      if(progress < 1) requestAnimationFrame(tick);
+      else el.textContent = prefix + (isDecimal ? num.toFixed(1) : num.toLocaleString()) + suffix;
+    }
+    // Only run when visible
+    const io = new IntersectionObserver(entries=>{
+      if(entries[0].isIntersecting){
+        requestAnimationFrame(tick);
+        io.disconnect();
+      }
+    });
+    io.observe(el);
+  });
+}
+
+/* ── PARALLAX ON HERO PHOTOS ──────────────────────────────── */
+function initParallax(){
+  const heroImgs = document.querySelectorAll('.para-img');
+  if(!heroImgs.length) return;
+  let ticking = false;
+  window.addEventListener('scroll', ()=>{
+    if(!ticking){
+      requestAnimationFrame(()=>{
+        const scrollY = window.scrollY;
+        heroImgs.forEach(img=>{
+          const parent = img.closest('.para-wrap');
+          if(!parent) return;
+          const rect = parent.getBoundingClientRect();
+          if(rect.bottom < 0 || rect.top > window.innerHeight) return;
+          const offset = (rect.top / window.innerHeight) * 25;
+          img.style.transform = `translateY(${offset}px) scale(1.08)`;
+        });
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, {passive:true});
+}
+
+/* ── ENGINE CARD LIVE TICK ────────────────────────────────── */
+function initEngineTick(){
+  const hashEl = document.querySelector('.hash-val');
+  if(!hashEl) return;
+  const hashes = ['0x8f2d...e4a1','0x3c91...b72f','0xa4fe...01c8','0x72dd...f39a'];
+  let i = 0;
+  setInterval(()=>{
+    i = (i+1) % hashes.length;
+    hashEl.style.opacity = '0.4';
+    setTimeout(()=>{ hashEl.textContent = hashes[i]; hashEl.style.opacity = '1'; }, 300);
+  }, 3500);
+  hashEl.style.transition = 'opacity .3s';
+}
+
+/* ── NAV SCROLL SHRINK ────────────────────────────────────── */
+function initNavShrink(){
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', ()=>{
+    nav.classList.toggle('nav-compact', window.scrollY > 60);
+  }, {passive:true});
+}
+
+/* ── INIT ─────────────────────────────────────────────────── */
+document.addEventListener('DOMContentLoaded', ()=>{
+  initReveal();
+  animateCounters();
+  initParallax();
+  initEngineTick();
+  initNavShrink();
+});
+</script>
+</body>
+</html>
